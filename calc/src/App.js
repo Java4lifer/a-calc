@@ -16,20 +16,21 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    width: 40,
   },
   divs: {
-    width: '50px',
-    height: "50px",
+    width: 50,
+    height: 50,
     backgroundColor: 'gray',
-    fontSize: '40px',
+    fontSize: 5,
   },
   input: {
-    width: 'auto',
-    height: '25%'
+    width: 40,
+    height: 22
   },
   calc: {
-    width: '10vw',
-    height: '10vw',
+    width: 10,
+    height: 10,
     border: '5px solid gray'
   }
 });

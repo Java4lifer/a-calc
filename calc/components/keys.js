@@ -9,9 +9,9 @@ export default [
     {id:8, txt:"8"},
     {id:9, txt:"9"},
     {id:10, txt:"0"},
-    {id:10, txt:"."},
-    {id:11, txt:" + "},
-    {id:12, txt:" - "},
-    {id:13, txt:" x "},
-    {id:14, txt:" / "}
+    {id:11, txt:"."},
+    {id:12, txt:" + "},
+    {id:13, txt:" - "},
+    {id:14, txt:" x "},
+    {id:15, txt:" / "}
 ]
