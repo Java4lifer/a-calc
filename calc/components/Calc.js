@@ -1,44 +1,43 @@
 import React, {useState} from 'react'
-import {SafeAreaView, Text, StyleSheet, TextInput, FlatList, TouchableWithoutFeedback} from 'react-native'
-import Quadrado from './quadrado.js'
-import keys from './keys.js'
+import {SafeAreaView, Text, StyleSheet, TextInput, Button} from 'react-native'
 //import estilo from '../estilo'
 
 export default Calc =>{
-    const [nums, setNums] = useState('')
-    const numbox = ({item: n}) => {
-        return (
-        <TouchableWithoutFeedback onPress={typeNum(n.txt)}>
-        <Quadrado text={n.txt} style={styles.divs}/>
-        </TouchableWithoutFeedback>
-        )
-    }
+    const [nums, setNums] = useState('2')
 
-    const typeNum = (num) => {
-        setNums(nums + num)
-    }
+    const typeNum = (num) => setNums(nums + num)
 
-    // const equalTo = () => {
-    //     const equas = nums
-    //     const equa = equas.replace('x', '*')
-    //     const sion = eval(equa)
-    //     setNums(sion)
-    // }
+    const equalTo = () => {
+      if(nums === '') {console.error("No good")}
+      const sion = eval(nums)
+      setNums(sion)
+    }
 
 return(
     <SafeAreaView style={styles.container}>
-        <TextInput 
+        <TextInput
+        style={styles.input} 
         placeholder=""
         value={nums}
+        onChange={nums => setNums(nums)}
         />
-        <FlatList style={styles.calc}
-            data={keys}
-            keyExtractor={n=>`${n.id}`}
-            renderItem={numbox}
-            />
-        {/* <TouchableWithoutFeedback onPress={equalTo}>
-        </TouchableWithoutFeedback> */}
-        <Quadrado text="=" style={styles.divs}/>
+        <Button style={styles.divs} onPress={typeNum('1')}>1</Button>
+        <Button style={styles.divs} onPress={typeNum('2')}>2</Button>
+        <Button style={styles.divs} onPress={typeNum('3')}>3</Button>
+        <Button style={styles.divs} onPress={typeNum('4')}>4</Button>
+        <Button style={styles.divs} onPress={typeNum('5')}>5</Button>
+        <Button style={styles.divs} onPress={typeNum('6')}>6</Button>
+        <Button style={styles.divs} onPress={typeNum('7')}>7</Button>
+        <Button style={styles.divs} onPress={typeNum('8')}>8</Button>
+        <Button style={styles.divs} onPress={typeNum('9')}>9</Button>
+        <Button style={styles.divs} onPress={typeNum('0')}>0</Button>
+        <Button style={styles.divs} onPress={typeNum(' + ')}>+</Button>
+        <Button style={styles.divs} onPress={typeNum(' - ')}>-</Button>
+        <Button style={styles.divs} onPress={typeNum(' * ')}>x</Button>
+        <Button style={styles.divs} onPress={typeNum(' / ')}>/</Button>
+        <Button style={styles.divs} onPress={typeNum('.')}>.</Button>
+        <Button style={styles.equ} onPress={equalTo()}>=</Button>
+        
     </SafeAreaView>
 )
 }
@@ -52,6 +51,12 @@ const styles = StyleSheet.create({
       width: 40,
     },
     divs: {
+      width: 50,
+      height: 50,
+      backgroundColor: 'gray',
+      fontSize: 5,
+    },
+    equ: {
       width: 50,
       height: 50,
       backgroundColor: 'gray',
