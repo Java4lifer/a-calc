@@ -1,16 +1,24 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {SafeAreaView, Text, StyleSheet, TextInput, Button} from 'react-native'
 //import estilo from '../estilo'
 
 export default Calc =>{
-    const [nums, setNums] = useState('2')
-
-    const typeNum = (num) => setNums(nums + num)
+    const [nums, setNums] = useState('')
+    
+    const typeNum = (num) => {
+      useEffect(() => {
+        setNums(nums + num)
+      })
+    }
 
     const equalTo = () => {
-      if(nums === '') {console.error("No good")}
-      const sion = eval(nums)
-      setNums(sion)
+      useEffect(() => {
+        if(nums === '') {console.error("No good")}
+        else{
+          const sion = eval(nums)
+          setNums(sion)
+        }
+      })
     }
 
 return(
@@ -19,24 +27,25 @@ return(
         style={styles.input} 
         placeholder=""
         value={nums}
-        onChange={nums => setNums(nums)}
+        onChangeText={nums => setNums(nums)}
         />
-        <Button style={styles.divs} onPress={typeNum('1')}>1</Button>
-        <Button style={styles.divs} onPress={typeNum('2')}>2</Button>
-        <Button style={styles.divs} onPress={typeNum('3')}>3</Button>
-        <Button style={styles.divs} onPress={typeNum('4')}>4</Button>
-        <Button style={styles.divs} onPress={typeNum('5')}>5</Button>
-        <Button style={styles.divs} onPress={typeNum('6')}>6</Button>
-        <Button style={styles.divs} onPress={typeNum('7')}>7</Button>
-        <Button style={styles.divs} onPress={typeNum('8')}>8</Button>
-        <Button style={styles.divs} onPress={typeNum('9')}>9</Button>
-        <Button style={styles.divs} onPress={typeNum('0')}>0</Button>
-        <Button style={styles.divs} onPress={typeNum(' + ')}>+</Button>
-        <Button style={styles.divs} onPress={typeNum(' - ')}>-</Button>
-        <Button style={styles.divs} onPress={typeNum(' * ')}>x</Button>
-        <Button style={styles.divs} onPress={typeNum(' / ')}>/</Button>
-        <Button style={styles.divs} onPress={typeNum('.')}>.</Button>
-        <Button style={styles.equ} onPress={equalTo()}>=</Button>
+        <Button style={styles.divs} title='1' onPress={typeNum('1')}/>
+        <Button style={styles.divs} title='2' onPress={typeNum('2')}/>
+        <Button style={styles.divs} title='3' onPress={typeNum('3')}/>
+        <Button style={styles.divs} title='4' onPress={typeNum('4')}/>
+        <Button style={styles.divs} title='5' onPress={typeNum('5')}/>
+        <Button style={styles.divs} title='6' onPress={typeNum('6')}/>
+        <Button style={styles.divs} title='7' onPress={typeNum('7')}/>
+        <Button style={styles.divs} title='8' onPress={typeNum('8')}/>
+        <Button style={styles.divs} title='9' onPress={typeNum('9')}/>
+        <Button style={styles.divs} title='0' onPress={typeNum('0')}/>
+        <Button style={styles.divs} title='+' onPress={typeNum(' + ')}/>
+        <Button style={styles.divs} title='-' onPress={typeNum(' - ')}/>
+        <Button style={styles.divs} title='x' onPress={typeNum(' * ')}/>
+        <Button style={styles.divs} title='/' onPress={typeNum(' / ')}/>
+        <Button style={styles.divs} title='.' onPress={typeNum('.')}/>
+        <Button style={styles.equ} title='C' onPress={() => setNums('')}/>
+        <Button style={styles.equ} title='=' onPress={equalTo()}/>
         
     </SafeAreaView>
 )
@@ -48,7 +57,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      width: 40,
+      width: 40
     },
     divs: {
       width: 50,
@@ -63,8 +72,9 @@ const styles = StyleSheet.create({
       fontSize: 5,
     },
     input: {
-      width: 40,
-      height: 22
+      width: 90,
+      height: 22,
+      backgroundColor: 'black'
     },
     calc: {
       width: 100,
