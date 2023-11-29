@@ -1,34 +1,22 @@
 import React, {useEffect, useState} from 'react'
 import {SafeAreaView, Text, StyleSheet, TextInput, Button} from 'react-native'
+import { typeNum, equalTo } from './Funs'
 //import estilo from '../estilo'
 
 export default Calc =>{
-    const [nums, setNums] = useState('')
+    const [nums, setNums] = useState(' ')
     
-    const typeNum = (num) => {
+    const handleFunction = (num) => {
       useEffect(() => {
-        setNums(nums + num)
+        const locaust = nums + num
+        setNums(locaust)
       })
     }
 
-    const equalTo = () => {
-      useEffect(() => {
-        if(nums === '') {console.error("No good")}
-        else{
-          const sion = eval(nums)
-          setNums(sion)
-        }
-      })
-    }
 
 return(
     <SafeAreaView style={styles.container}>
-        <TextInput
-        style={styles.input} 
-        placeholder=""
-        value={nums}
-        onChangeText={nums => setNums(nums)}
-        />
+        
         <Button style={styles.divs} title='1' onPress={typeNum('1')}/>
         <Button style={styles.divs} title='2' onPress={typeNum('2')}/>
         <Button style={styles.divs} title='3' onPress={typeNum('3')}/>
@@ -53,10 +41,7 @@ return(
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
       backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
       width: 40
     },
     divs: {
@@ -74,7 +59,8 @@ const styles = StyleSheet.create({
     input: {
       width: 90,
       height: 22,
-      backgroundColor: 'black'
+      backgroundColor: 'black',
+      color: 'white'
     },
     calc: {
       width: 100,
